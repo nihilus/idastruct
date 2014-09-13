@@ -2,7 +2,7 @@
 #include <idp.hpp>
 #include <ua.hpp>
 #include <kernwin.hpp>
-#include <allins.hpp>
+//#include <allins.hpp>
 #include <intel.hpp>
 #include <funcs.hpp>
 #include <nalt.hpp>
@@ -116,7 +116,7 @@ int struct_member_add(struc_t *sptr, char *name, ea_t offset,
 void struct_trace(ea_t addr)
 {
 	strace_t *trace;
-	ua_ana0(addr);
+	decode_insn(addr);
 	
 	for(int opnum = 0; cmd.Operands[opnum].type != o_void; opnum++)
 	{
@@ -277,7 +277,7 @@ int get_disasm(ea_t addr, char *buf, int bufsz)
 	char mnem[32];
 	char *ptr = buf;
 
-	ua_ana0(addr);
+	decode_insn(addr);
 	ua_mnem(addr, mnem, sizeof(mnem) - 1);
 
 	qsnprintf(buf, bufsz - 1, "%08x: %-5s ", addr, mnem);
@@ -290,7 +290,7 @@ int get_disasm(ea_t addr, char *buf, int bufsz)
 		if(opnum != 0)
 			qsnprintf(op_str, sizeof(op_str), ", ");
 
-		ua_outop(addr, op_str, sizeof(op_str) - 3, opnum);
+		ua_outop2(addr, op_str, sizeof(op_str) - 3, opnum);
 		tag_remove(op_str, op_str, 0);
 		
 		qsnprintf(ptr, bufsz - 1 - (ptr - buf), "%s", op_str);

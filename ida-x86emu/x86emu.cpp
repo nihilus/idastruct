@@ -51,7 +51,7 @@
 #include "hooklist.h"
 #include "break.h"
 
-#include <allins.hpp>
+//#include <allins.hpp>
 #include "../idastruct/idastruct.h"
 
 #ifndef CYGWIN
