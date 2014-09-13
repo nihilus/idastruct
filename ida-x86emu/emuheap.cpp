@@ -22,7 +22,7 @@
 #include <string.h>
 
 #include "emuheap.h"
-
+#include <ida.hpp>
 #include <kernwin.hpp>
 
 //Constructor for malloc'ed node
